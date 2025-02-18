@@ -18,7 +18,7 @@ return new class extends Migration
         $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         $table->foreignId('agent_id')->nullable()->constrained('users')->onDelete('set null');
-        $table->enum('status', ['pending', 'in_progress', 'resolved'])->default('pending');
+        $table->foreignId('status_id')->constrained('status')->onDelete('cascade')->default('pending');
         $table->timestamps();
     });
 }
