@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ClientController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,10 +21,16 @@ use App\Http\Controllers\ClientController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/home', [AgentController::class, 'index'])->name('wassim');
-Route::get('/agent.dashboard', [AgentController::class, 'index'])->name('dashboard');
-Route::get('/client.dashboard', [ClientController::class, 'index'])->name('dashboard');
-Route::get('/admin.dashboard', [AdminController::class, 'index'])->name('dashboard');
+// Route::get('/client/dashboard', function () {
+//     return view('client.dashboard');
+// })->name('client.dashboard');
+
+// // Route::get('/home', [AgentController::class, 'index'])->name('wassim');
+// Route::middleware(['auth', 'role'])->group(function(){
+//     Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
+//     Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
+//     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware();
+// });
 
 
 // Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -37,6 +44,24 @@ Route::get('/admin.dashboard', [AdminController::class, 'index'])->name('dashboa
 // Route::middleware(['auth', 'role:user'])->group(function () {
 //     Route::get('/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
 // });
+
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['role:agent'])->group(function () {
+        Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
+    });
+
+    Route::middleware(['role:user'])->group(function () {
+        Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
+    });
+
+    Route::middleware(['role:admin'])->group(function () {
+        Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    });
+});
+
+
 
 Route::middleware('auth', )->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

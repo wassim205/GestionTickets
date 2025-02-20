@@ -23,14 +23,14 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 $role = Auth::user()->role->name;
                 // dd($role);
-                if ($role === 'admin') {
+                if ($role == 'admin') {
                     return redirect('admin.dashboard');
-                } elseif ($role === 'agent') {
+                } elseif ($role == 'agent') {
                     return redirect('agent.dashboard');
-                } elseif($role === 'user') {
+                } elseif($role == 'user') {
                     return redirect('client.dashboard');
                 }
-                return redirect(RouteServiceProvider::HOME)->with('error', 'You are not authorized to access this page');
+                // return redirect(Rout:eServiceProvider::HOME)->with('error', 'You are not authorized to access this page');
             }
         }
 

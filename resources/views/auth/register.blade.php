@@ -39,19 +39,19 @@
         </div>
 
         <!-- selectioner le role -->
+        <!-- Sélectionner le rôle -->
         <div class="mt-4">
-            <label for="role" class="block font-medium text-gray-700">Choisissez votre rôle</label>
-            <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required>
-                <option value="" disabled selected>Sélectionnez un rôle</option>
-                <option value="client">Client</option>
-                <option value="agent">Agent</option>
+            <x-input-label for="role" :value="__('Choisissez votre rôle')" />
+            <select id="role" name="role" required
+                class="block mt-1 w-full border-gray-300 bg-white text-gray-900 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600">
+                <option value="" disabled selected class="text-gray-400">Sélectionnez un rôle</option>
+                <option value="user" class="text-white">Client</option>
+                <option value="agent" class="text-white">Agent</option>
             </select>
-            @error('role')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>
+
+
 
 
         <div class="flex items-center justify-end mt-4">

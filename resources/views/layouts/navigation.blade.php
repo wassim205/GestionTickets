@@ -5,42 +5,27 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    <a href="#" class="flex items-center">
+                        <x-application-logo class="block h-9 w-16" />
+                        <h5 class="text-xl ml-4 dark:text-gray-200 font-bold">Tickation</h5>
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    @if(Auth::user()->role === 'admin')
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-
-                    @if(Auth::user()->role === 'admin')
-                        <x-nav-link :href="route('admin.panel')" :active="request()->routeIs('admin.panel')">
-                            {{ __('Admin Panel') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('users.manage')" :active="request()->routeIs('users.manage')">
-                            {{ __('Manage Users') }}
-                        </x-nav-link>
                     @endif
-
                     @if(Auth::user()->role === 'agent')
-                        <x-nav-link :href="route('agent.tickets')" :active="request()->routeIs('agent.tickets')">
-                            {{ __('Tickets') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('agent.reports')" :active="request()->routeIs('agent.reports')">
-                            {{ __('Reports') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('agent.dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
                     @endif
-
                     @if(Auth::user()->role === 'user')
-                        <x-nav-link :href="route('user.support')" :active="request()->routeIs('user.support')">
-                            {{ __('Support') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('user.profile')" :active="request()->routeIs('user.profile')">
-                            {{ __('My Profile') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('client.dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -90,7 +75,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    {{-- <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -138,5 +123,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 </nav>

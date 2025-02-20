@@ -29,7 +29,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $user_role = Auth::user()->role_id;
+        
+        if ($user_role == 1) {
+            return redirect()->route('user.dashboard');
+        } elseif ($user_role == 2) {
+            return redirect()->route('agent.dashboard');
+        } elseif ($user_role == 3) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('login')->with('error', 'Invalid User Role');
+        }
+
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
