@@ -35,13 +35,19 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'string', 'in:client,agent'],
         ]);
+
+        $roleId = User::count() === 0
+        ? Role::where('name', 'admin')->first()->id
+        : Role::where('name', $request->input('role'))->first()->id;
+
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => User::count() === 0 ? Role::where("name", "admin")->first()->id : Role::where("name", "user")->first()->id,
+            'role_id' => $roleId,
         ]);
 
         event(new Registered($user));
