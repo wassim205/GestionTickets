@@ -75,30 +75,30 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    {{-- <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        {{-- <div class="pt-2 pb-3 space-y-1"> --}}
+            {{-- <x-responsive-nav-link :href="route('client.dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
             @if(Auth::user()->role === 'admin')
-                <x-responsive-nav-link :href="route('admin.panel')">
-                    {{ __('Admin Panel') }}
+                <x-responsive-nav-link :href="route('admin.dashboard')">
+                    {{ __('Dashboard') }}
                 </x-responsive-nav-link>
             @endif
 
             @if(Auth::user()->role === 'agent')
-                <x-responsive-nav-link :href="route('agent.tickets')">
-                    {{ __('Tickets') }}
+                <x-responsive-nav-link :href="route('agent.dashboard')">
+                    {{ __('Dashboard') }}
                 </x-responsive-nav-link>
             @endif
 
             @if(Auth::user()->role === 'user')
-                <x-responsive-nav-link :href="route('user.support')">
-                    {{ __('Support') }}
+                <x-responsive-nav-link :href="route('user.dashboard')">
+                    {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-            @endif
-        </div>
+            {{-- @endif --}}
+         {{-- </div> --}}
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
@@ -123,5 +123,7 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+
+        
+    </div>
 </nav>

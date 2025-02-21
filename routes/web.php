@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TicketController;
 
 
 /*
@@ -69,5 +70,8 @@ Route::middleware('auth', )->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
+
+Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+
 
 require __DIR__.'/auth.php';

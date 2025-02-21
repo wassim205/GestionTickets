@@ -15,10 +15,10 @@ return new class extends Migration
         $table->id();
         $table->string('title');
         $table->text('description');
-        $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
+        $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         $table->foreignId('agent_id')->nullable()->constrained('users')->onDelete('set null');
-        $table->foreignId('status_id')->constrained('status')->onDelete('cascade')->default('pending');
+        $table->foreignId('status_id')->constrained('status')->onDelete('cascade')->default('1');
         $table->timestamps();
     });
 }
@@ -28,8 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('tickets');
     }
 };

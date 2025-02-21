@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         $user_role = Auth::user()->role_id;
         
         if ($user_role == 1) {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('client.dashboard');
         } elseif ($user_role == 2) {
             return redirect()->route('agent.dashboard');
         } elseif ($user_role == 3) {
@@ -55,6 +55,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
