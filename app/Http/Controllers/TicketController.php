@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Tickets;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -54,9 +55,12 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $ticket = Tickets::findOrFail($id);
+        $agents = User::where('role_id', 2)->get();
+        return view('tickets.edit', compact('ticket', 'agents'));
+        // return view('tickets.edit', []);
     }
 
     /**
@@ -64,7 +68,17 @@ class TicketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'agent_id' => 'required|exists:users,id',
+        ]);
+
+        $ticket = Tickets::findOrFail($id);
+        $ticket->update([
+            'agent_id' => $request->agent_id,
+        ]);
+
+        // return redirect()->back();
+        return redirect()->route('admin.dashboard')->with('success', 'Agent assigné avec succès.');
     }
 
     /**

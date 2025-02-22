@@ -22,6 +22,9 @@ use App\Http\Controllers\TicketController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/ticket/view', function () {
+//     return view('ticket.view');
+// });
 // Route::get('/client/dashboard', function () {
 //     return view('client.dashboard');
 // })->name('client.dashboard');
@@ -71,7 +74,8 @@ Route::middleware('auth', )->group(function () {
 
 });
 
-Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
-
+// Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])->name('tickets.edit');
+// Route::put('/tickets/update', [TicketController::class, 'update'])->name('tickets.update');
+Route::resource('tickets', TicketController::class);
 
 require __DIR__.'/auth.php';

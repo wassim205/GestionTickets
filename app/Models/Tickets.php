@@ -19,6 +19,10 @@ class Tickets extends Model
         return $this->belongsTo(Categories::class,'category_id'); 
     }
     public function users(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function agent()
+    {
+        return $this->belongsTo(User::class, 'agent_id'); // Link to the User model using agent_id
     }
 }
