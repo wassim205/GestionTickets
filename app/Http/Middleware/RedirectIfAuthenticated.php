@@ -21,7 +21,16 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $role = Auth::user()->role->name;
+                // dd($role);
+                if ($role == 'admin') {
+                    return redirect('admin.dashboard');
+                } elseif ($role == 'agent') {
+                    return redirect('agent.dashboard');
+                } elseif($role == 'user') {
+                    return redirect('client.dashboard');
+                }
+                // return redirect(Rout:eServiceProvider::HOME)->with('error', 'You are not authorized to access this page');
             }
         }
 
