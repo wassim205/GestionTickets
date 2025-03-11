@@ -5,7 +5,7 @@
                 <div class="flex-shrink-0 flex items-center">
                     <h1
                         class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-                        TicketFlow
+                        Tickation
                     </h1>
                 </div>
 

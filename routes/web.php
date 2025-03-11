@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TicketController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,8 @@ use App\Http\Controllers\TicketController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register');
 // Route::get('/ticket/view', function () {
 //     return view('ticket.view');
 // });
