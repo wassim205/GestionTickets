@@ -78,7 +78,7 @@ class TicketController extends Controller
         ]);
 
         // return redirect()->back();
-        return redirect()->route('admin.dashboard')->with('success', 'Agent assigné avec succès.');
+        return redirect()->route('adminDashboard')->with('success', 'Agent assigné avec succès.');
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TicketController;
 
 
+require __DIR__.'/auth.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register');
+
+
+// Route::get('/register', []);
 // Route::get('/ticket/view', function () {
 //     return view('ticket.view');
 // });
@@ -56,15 +59,15 @@ Route::get('/register');
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:agent'])->group(function () {
-        Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agent.dashboard');
+        Route::get('/agent/dashboard', [AgentController::class, 'index'])->name('agentDashboard');
     });
 
     Route::middleware(['role:user'])->group(function () {
-        Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
+        Route::get('/client/dashboard', [ClientController::class, 'index'])->name('clientDashboard');
     });
 
     Route::middleware(['role:admin'])->group(function () {
-        Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('adminDashboard');
     });
 });
 
@@ -81,4 +84,3 @@ Route::middleware('auth', )->group(function () {
 // Route::put('/tickets/update', [TicketController::class, 'update'])->name('tickets.update');
 Route::resource('tickets', TicketController::class);
 
-require __DIR__.'/auth.php';

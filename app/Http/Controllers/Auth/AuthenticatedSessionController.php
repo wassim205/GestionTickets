@@ -32,11 +32,11 @@ class AuthenticatedSessionController extends Controller
         $user_role = Auth::user()->role_id;
         
         if ($user_role == 1) {
-            return redirect()->route('client.dashboard');
+            return redirect()->route('clientDashboard');
         } elseif ($user_role == 2) {
-            return redirect()->route('agent.dashboard');
+            return redirect()->route('agentDashboard');
         } elseif ($user_role == 3) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('adminDashboard');
         } else {
             return redirect()->route('login')->with('error', 'Invalid User Role');
         }

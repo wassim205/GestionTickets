@@ -13,17 +13,17 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if(Auth::user()->role === 'admin')
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('adminDashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @endif
                     @if(Auth::user()->role === 'agent')
-                    <x-nav-link :href="route('agent.dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('agentDashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @endif
                     @if(Auth::user()->role === 'user')
-                    <x-nav-link :href="route('client.dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('clientDashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @endif

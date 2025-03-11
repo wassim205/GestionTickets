@@ -117,7 +117,7 @@
                                     {{ ucfirst($ticket->status->name) }}
                                 </td>
                                 <td class="border px-4 py-2 text-gray-800 dark:text-gray-200">
-                                    <a href="{{ route('client.dashboard', $ticket) }}"
+                                    <a href="{{ route('clientDashboard', $ticket) }}"
                                         class="text-blue-600 hover:underline">Voir</a>
                                 </td>
                             </tr>
